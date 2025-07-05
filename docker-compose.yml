@@ -58,3 +58,12 @@ services:
       - redisinsight_data:/data
     networks:
       - projetos-vps
+
+
+  cloudflaretunnel:
+    container_name: cloudflaretunnel
+    image: cloudflare/cloudflared:2025.7.0
+    restart: unless-stopped
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    command: tunnel --no-outoupdate run
