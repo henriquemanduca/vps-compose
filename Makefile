@@ -15,6 +15,10 @@ all: help
 ## Comandos do Docker Compose
 ## -----------------------------------------------------------------------------
 
+up:
+	clear
+	docker compose up -d
+
 # Atualiza a imagem de um serviço específico e o reinicia.
 update:
 	@if [ -z "$(service)" ]; then \
