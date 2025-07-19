@@ -7,7 +7,7 @@ service ?= ""
 
 # Adiciona um alvo .PHONY para garantir que o 'make' execute o comando
 # em vez de procurar por um arquivo com o mesmo nome do alvo.
-.PHONY: update help
+.PHONY: up update help
 
 all: help
 
