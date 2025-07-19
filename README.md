@@ -10,6 +10,7 @@ Crie esse repo para facilitar a configuração desses serviços em VPS particula
 
 O arquivo `docker-compose.yml` define os seguintes serviços:
 
+- **Portainer-ce**: Edição comunitária do Portainer, uma ferramenta de gerenciamento de contêineres para Docker e Kubernetes.
 - **Cloudflaretunnel**: Cria um túnel seguro entre a sua VPS e a Cloudflare, permitindo expor serviços para a internet sem abrir portas no firewall.
 - **Postgresql**: Um banco de dados relacional open-source.
 - **Pgadmin**: Uma ferramenta de administração para o PostgreSQL.
