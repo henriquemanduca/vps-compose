@@ -7,9 +7,22 @@ volumes:
   postgres_data:
   redis_data:
   redisinsight_data:
+  pgadmin_data:
     driver: local
 
 services:
+  cloudflaretunnel:
+    image: cloudflare/cloudflared:2025.7.0
+    container_name: cloudflaretunnel
+    restart: unless-stopped
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    command: tunnel --no-autoupdate run
+    networks:
+      - projetos-vps
+    depends_on:
+      - portainer
+
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -22,18 +35,6 @@ services:
       - "portainer_data:/data"
     networks:
       - projetos-vps
-
-  cloudflaretunnel:
-    image: cloudflare/cloudflared:2025.7.0
-    container_name: cloudflaretunnel
-    restart: unless-stopped
-    environment:
-      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
-    command: tunnel --no-autoupdate run
-    networks:
-      - projetos-vps
-    depends_on:
-      - portainer
 
   postgres:
     image: postgres:15-alpine
@@ -68,6 +69,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     networks:
       - projetos-vps
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
     depends_on:
       portainer:
         condition: service_started
